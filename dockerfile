@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:ubuntu
 WORKDIR /usr/src/app
 COPY . .
 RUN npm i
