@@ -86,7 +86,7 @@ const handlers = [
                 .string()
                 .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
                 .required(),
-            password: joi.string().alphanum().min(8).max(15).required(),
+            password: joi.string().min(8).max(15).required(),
             date: joi.date()
         })
     },
@@ -122,7 +122,22 @@ const handlers = [
     {
         route: '/api/contacts/updateContact/:id',
         handler: updateContact,
-        method: METHOD.PUT
+        method: METHOD.PUT,
+        joiSchema: joi.object({
+            id: joi.string().required(),
+            name: joi.string().alphanum().min(3).max(30).required(),
+            email: joi
+                .string()
+                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+                .allow(''),
+            phoneNum: joi.when('email', {
+                is: '',
+                then: joi.string().required(),
+                otherwise: joi.string().allow('')
+            }),
+            type: joi.string(),
+            date: joi.date()
+        })
     },
     {
         route: '/api/contacts/deleteContact/:id',
@@ -140,7 +155,7 @@ const callback = (err, data, res) => {
 
     console.log('ERR', err);
     console.log('BODY DATA', data);
-    res.statusCode = data.statusCode ?? 200;
+    res.statusCode = data?.statusCode ? data.statusCode : 200;
 
     return res.json(data);
 };

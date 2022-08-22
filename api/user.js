@@ -24,7 +24,7 @@ class UserApi {
             };
             const token = AuthUtil.signAuthToken(payload);
             console.log('Exit User API - add user: ', token);
-            callback({
+            callback(null, {
                 msg: 'user registered successfully',
                 token: token
             });
@@ -43,10 +43,17 @@ class UserApi {
                 ? event.headers.authorization
                 : event.headers.Authorization;
             const decodedPayload = await AuthUtil.verifyAuthToken(token);
+            console.log(decodedPayload);
             await DbUtil.dbConnect();
-            const user = await User.findById(decodedPayload.user_id).select('-password');
+            const user = await User.findById(decodedPayload.user_id);
+            if (!user) {
+                throw {
+                    error: 'User not found. Please login',
+                    statusCode: 500
+                };
+            }
             console.log('Exit User API - getLoggedInUser: ', user);
-            callback(user);
+            callback(null, user);
         } catch (error) {
             console.log('Error in User API - getLoggedInUser: ', error);
             callback({

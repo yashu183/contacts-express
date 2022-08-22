@@ -12,7 +12,7 @@ class Contact {
             const { name, email, phoneNum, type, date } = event.body;
             const decodedPayload = await AuthUtil.verifyAuthToken(token);
             await DbUtil.dbConnect();
-            const contact = new Contact({
+            const contact = new Contacts({
                 name,
                 email,
                 phoneNum,
@@ -22,7 +22,7 @@ class Contact {
             });
             const contactAdded = await contact.save();
             console.log('Exit Contact - add contact - contact Added', contactAdded);
-            callback(contactAdded);
+            callback(null, contactAdded);
         } catch (error) {
             console.log('Error in Contacts - add contact: ', Object.keys(error));
             callback({ error });
@@ -41,7 +41,7 @@ class Contact {
                 date: -1
             });
             console.log('Exit Contact - get all contact: ', contacts);
-            callback({
+            callback(null, {
                 contacts
             });
         } catch (error) {
@@ -75,7 +75,7 @@ class Contact {
                 throw 'You are not authorized to perform the action';
             }
             if (name) updatedFields['name'] = name;
-            if (email) updatedFields['fields'] = fields;
+            if (email) updatedFields['email'] = email;
             if (phoneNum) updatedFields['phoneNum'] = phoneNum;
             if (type) updatedFields['type'] = type;
             if (date) updatedFields['date'] = new Date();
