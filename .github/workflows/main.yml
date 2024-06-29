@@ -28,4 +28,5 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         command_timeout: 30m
         script: | 
-          echo ${{ secrets.SSH_KEY }}
+          echo "Connected!!!"
+          pwd
