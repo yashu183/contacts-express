@@ -30,7 +30,7 @@ jobs:
         script: |
           echo "Connected!!!"
           ls -al
-          /opt/cpanel/ea-nodejs18/bin/npm --prefix /home/yashu/public_html/contacts.yashu.fun i
+          sudo /opt/cpanel/ea-nodejs18/bin/npm --prefix /home/yashu/public_html/contacts.yashu.fun i
           sudo rm -rf /home/yashu/public_html/contacts.yashu.fun/tmp
           sudo mkdir /home/yashu/public_html/contacts.yashu.fun/tmp
           sudo touch /home/yashu/public_html/contacts.yashu.fun/tmp/restart.txt
