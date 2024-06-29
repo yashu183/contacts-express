@@ -27,10 +27,4 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         command_timeout: 30m
-        script: | 
-          echo "Connected!!!"
-          sudo su -c 'cd /home/yashu/public_html/contacts.yashu.fun/'
-          ls -al
-          sudo mkdir /home/yashu/public_html/contacts.yashu.fun/tmp
-          sudo touch /home/yashu/public_html/contacts.yashu.fun/tmp/restart.txt
-          sudo ls /home/yashu/public_html/contacts.yashu.fun/tmp
+        script: sudo su -c deploy.sh
