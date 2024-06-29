@@ -31,6 +31,7 @@ jobs:
           echo "Connected!!!"
           sudo su
           pwd
+          cd /home/yashu/public_html/contacts.yashu.fun/
           sudo mkdir /home/yashu/public_html/contacts.yashu.fun/tmp
           sudo touch /home/yashu/public_html/contacts.yashu.fun/tmp/restart.txt
           sudo ls /home/yashu/public_html/contacts.yashu.fun/tmp
