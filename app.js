@@ -1,6 +1,7 @@
 const { login } = require('./api/auth');
 const { addUser, getLoggedInuser } = require('./api/user');
 const { addContact, updateContact, deleteContact, getAllContacts } = require('./api/contact');
+const { getWelcomeMessage } = require('./api/welcome');
 const joi = require('joi');
 
 const express = require('express');
@@ -67,6 +68,11 @@ const METHOD = {
 };
 
 const handlers = [
+    {
+        route: '/',
+        handler: getWelcomeMessage,
+        method: METHOD.GET
+    },
     {
         route: '/api/auth/login',
         handler: login,
