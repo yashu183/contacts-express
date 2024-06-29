@@ -28,4 +28,4 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         command_timeout: 30m
         script: | 
-          pwd
+          echo ${{ secrets.SSH_KEY }}
