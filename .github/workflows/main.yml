@@ -27,4 +27,4 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         command_timeout: 30m
-        script: sudo su -c /home/yashu/public_html/contacts.yashu.fun/scripts/deploy.sh
+        script: sudo /home/yashu/public_html/contacts.yashu.fun/scripts/deploy.sh
