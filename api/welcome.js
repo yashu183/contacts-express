@@ -2,7 +2,7 @@ class Welcome{
     static async getWelcomeMessage(event, callback) {
         console.log('Enter Welcome - Welcome message - event body', event.body, typeof event.body);
         try {
-            var welcomeMessage = "Hello!! Welcome to Yashu's server - testing CI/CD with this get request V3.0"
+            var welcomeMessage = "Hello!! Welcome to Yashu's server - testing CI/CD with this get request V4.0"
             console.log('Exit Welcome - Welcome message: ', welcomeMessage);
             callback(null, {
                 welcomeMessage
