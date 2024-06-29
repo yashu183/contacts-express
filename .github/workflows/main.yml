@@ -29,6 +29,7 @@ jobs:
         command_timeout: 30m
         script: | 
           echo "Connected!!!"
+          sudo su
           pwd
           cd ../yashu/public_html/contacts.yashu.fun
           pwd
